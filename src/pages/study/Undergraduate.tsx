@@ -1,4 +1,10 @@
 import { Container } from '../../components/common/Container';
+import { Section, SectionTitle } from '../../components/common/Section';
+import { SmartImage } from '../../components/common/SmartImage';
+import { Check } from 'lucide-react';
+
+// Görsel
+import studentLifeImg from '../../assets/images/student-life.jpg';
 
 export const Undergraduate = () => {
   const degrees = [
@@ -15,38 +21,65 @@ export const Undergraduate = () => {
   ];
 
   return (
-    <div className="bg-neutral-50 min-h-screen py-12 font-sans">
-      <Container>
-        <div className="bg-white p-8 md:p-12 rounded-lg border border-neutral-200 shadow-sm">
-          <h1 className="text-3xl md:text-4xl font-serif font-bold text-primary-900 mb-6">
-            Undergraduate Study
-          </h1>
-          
-          <div className="space-y-6 text-neutral-600 leading-relaxed">
-            <p>
-              In the United States of America undergraduate refers to those who are studying for a bachelor's degree. 
-              The most common method consists of four years of study leading to a Bachelor of Arts (B.A.), 
-              a Bachelor of Science (B.S.), or sometimes another bachelor's degree.
-            </p>
-            <p>
-              Professional degrees such as law, medicine, pharmacy, and dentistry, are offered as graduate study 
-              after earning at least three years of undergraduate schooling or after earning a bachelor's degree 
-              depending on the program.
-            </p>
-          </div>
+    <div className="bg-neutral-50 min-h-screen">
+      
+      {/* Header */}
+      <Section bg="navy" className="py-20">
+        <SectionTitle align="center" subtitle="Start Your Journey">Undergraduate Study</SectionTitle>
+        <p className="text-center text-neutral-300 max-w-2xl mx-auto text-lg">
+          Build a strong foundation for your future with our comprehensive bachelor degree programmes.
+        </p>
+      </Section>
 
-          <div className="mt-10">
-            <h2 className="text-xl font-bold text-primary-900 mb-4 border-b border-neutral-100 pb-2">
-              Available Degrees
-            </h2>
-            <ul className="grid md:grid-cols-2 gap-3">
-              {degrees.map((degree, index) => (
-                <li key={index} className="flex items-center text-neutral-700 bg-neutral-50 px-4 py-2 rounded">
-                  <span className="w-2 h-2 bg-secondary-600 rounded-full mr-3"></span>
-                  {degree}
-                </li>
-              ))}
-            </ul>
+      {/* İçerik - Çakışma düzeltildi */}
+      <Container className="py-16 relative z-10 pb-20">
+        <div className="bg-white rounded-xl shadow-card border border-neutral-100 overflow-hidden">
+          <div className="grid md:grid-cols-2">
+            
+            {/* Sol Taraf: Görsel */}
+            <div className="relative h-64 md:h-auto min-h-[400px]">
+              <SmartImage 
+                src={studentLifeImg} 
+                alt="Students on Campus" 
+                className="h-full w-full"
+                placeholderText="Happy Students Group"
+                aspectRatio="portrait"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-900/50 to-transparent md:hidden" />
+            </div>
+
+            {/* Sağ Taraf: İçerik */}
+            <div className="p-8 md:p-12 flex flex-col justify-center">
+              <h2 className="text-2xl font-serif font-bold text-primary-900 mb-6">The American Undergraduate System</h2>
+              <div className="space-y-4 text-neutral-600 leading-relaxed">
+                <p>
+                  In the United States of America undergraduate refers to those who are studying for a bachelor's degree. 
+                  The most common method consists of four years of study leading to a Bachelor of Arts (B.A.), 
+                  a Bachelor of Science (B.S.), or sometimes another bachelor's degree.
+                </p>
+                <p>
+                  Professional degrees such as law, medicine, pharmacy, and dentistry, are offered as graduate study 
+                  after earning at least three years of undergraduate schooling or after earning a bachelor's degree 
+                  depending on the program.
+                </p>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-neutral-100">
+                <h3 className="font-bold text-primary-900 mb-4 flex items-center">
+                  <span className="w-8 h-1 bg-secondary-500 mr-3"></span>
+                  Available Degrees
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {degrees.map((degree, index) => (
+                    <li key={index} className="flex items-start text-sm text-neutral-700">
+                      <Check className="w-4 h-4 text-secondary-600 mt-1 mr-2 flex-shrink-0" />
+                      {degree}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </Container>

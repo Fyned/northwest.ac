@@ -1,11 +1,20 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async'; // SEO Altyapısı
+
+// Layouts & Components
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { PagePlaceholder } from './components/common/PagePlaceholder';
+import { PageTransition } from './components/layout/PageTransition';
+import { SEO } from './components/common/SEO'; // SEO Bileşeni
 
-// Sections
-import { Hero } from './components/sections/Hero';
+// Pages - Home
+import { Home } from './pages/Home';
+
+// Pages - 404
+import { NotFound } from './pages/NotFound'; // 404 Sayfası
 
 // Pages - Phase 2 (Academic Core)
 import { Academics } from './pages/Academics';
@@ -31,7 +40,7 @@ import { Fundings } from './pages/business/Fundings';
 import { DegreesAtWork } from './pages/business/DegreesAtWork';
 import { ProfessionalCourses } from './pages/business/ProfessionalCourses';
 
-// Pages - Phase 6 (Student Life & Generic - NEW)
+// Pages - Phase 6 & 8 (Student Life & Generic)
 import { StudentLife } from './pages/StudentLife';
 import { GenericContent } from './pages/GenericContent';
 
@@ -44,99 +53,111 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Ana Sayfa Bileşeni
-const Home = () => (
-  <>
-    <Hero />
-    {/* İleride buraya Latest News vb. eklenebilir */}
-  </>
-);
+// İçerik Sarmalayıcı (Router Context içinde çalışması için)
+const AppContent = () => {
+  const location = useLocation();
+
+  return (
+    <div className="min-h-screen flex flex-col font-sans text-neutral-900">
+      <Header />
+      
+      <main className="flex-grow">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            
+            {/* --- GLOBAL PAGES --- */}
+            <Route path="/" element={
+              <PageTransition>
+                <SEO 
+                  title="Home" 
+                  description="Welcome to University of NorthWest. Explore our accredited programmes and global campus network." 
+                />
+                <Home />
+              </PageTransition>
+            } />
+            
+            <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+            <Route path="/faculty" element={<PageTransition><Faculty /></PageTransition>} />
+            <Route path="/accreditations" element={<PageTransition><Accreditations /></PageTransition>} />
+            <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+
+            {/* --- ACADEMIC PAGES --- */}
+            <Route path="/academics" element={<PageTransition><Academics /></PageTransition>} />
+            
+            <Route path="/study/courses/undergraduate" element={<PageTransition><Undergraduate /></PageTransition>} />
+            <Route path="/study/courses/postgraduate" element={<PageTransition><Postgraduate /></PageTransition>} />
+            <Route path="/study/courses/phd" element={<PageTransition><Phd /></PageTransition>} />
+
+            {/* International (Tekrarlı içerik) */}
+            <Route path="/international/courses/undergraduate" element={<PageTransition><Undergraduate /></PageTransition>} />
+            <Route path="/international/courses/postgraduate" element={<PageTransition><Postgraduate /></PageTransition>} />
+            <Route path="/international/courses/phd" element={<PageTransition><Phd /></PageTransition>} />
+
+            {/* --- ADMISSIONS & FEES --- */}
+            <Route path="/admissions" element={<PageTransition><Admissions /></PageTransition>} />
+            <Route path="/tuition" element={<PageTransition><Tuition /></PageTransition>} />
+            
+            {/* Apply Alt Rotaları */}
+            <Route path="/apply/undergraduate" element={<PageTransition><PagePlaceholder title="Undergraduate Admissions" /></PageTransition>} />
+            <Route path="/apply/postgraduate" element={<PageTransition><PagePlaceholder title="Postgraduate Admissions" /></PageTransition>} />
+            <Route path="/apply/transfer-credit" element={<PageTransition><PagePlaceholder title="Transfer Credit" /></PageTransition>} />
+
+            {/* --- BUSINESS & VALIDATION --- */}
+            <Route path="/validation-services" element={<PageTransition><ValidationServices /></PageTransition>} />
+            
+            <Route path="/business/experts" element={<PageTransition><Experts /></PageTransition>} />
+            <Route path="/business/employing" element={<PageTransition><Employing /></PageTransition>} />
+            <Route path="/business/fundings" element={<PageTransition><Fundings /></PageTransition>} />
+            <Route path="/business/degrees-at-work" element={<PageTransition><DegreesAtWork /></PageTransition>} />
+            <Route path="/business/professional-courses" element={<PageTransition><ProfessionalCourses /></PageTransition>} />
+
+            {/* --- INTERNATIONAL --- */}
+            <Route path="/international/support" element={<PageTransition><GenericContent /></PageTransition>} />
+            <Route path="/international/application" element={<PageTransition><GenericContent /></PageTransition>} />
+            <Route path="/international/how-to-apply" element={<PageTransition><GenericContent /></PageTransition>} />
+            <Route path="/international/english-requirements" element={<PageTransition><GenericContent /></PageTransition>} />
+            <Route path="/international/new-students" element={<PageTransition><GenericContent /></PageTransition>} />
+            <Route path="/international/travel" element={<PageTransition><GenericContent /></PageTransition>} />
+            <Route path="/international/orientation" element={<PageTransition><GenericContent /></PageTransition>} />
+
+            {/* --- STUDENT LIFE --- */}
+            <Route path="/student-life/pre-arrival" element={<PageTransition><StudentLife /></PageTransition>} />
+            <Route path="/student-life/arrival" element={<PageTransition><StudentLife /></PageTransition>} />
+            <Route path="/student-life/first-week" element={<PageTransition><StudentLife /></PageTransition>} />
+            
+            <Route path="/student-life/support" element={<PageTransition><StudentLife /></PageTransition>} />
+            <Route path="/student-life/disability" element={<PageTransition><StudentLife /></PageTransition>} />
+            <Route path="/student-life/skills" element={<PageTransition><StudentLife /></PageTransition>} />
+            <Route path="/student-life/careers" element={<PageTransition><StudentLife /></PageTransition>} />
+            <Route path="/student-life/volunteering" element={<PageTransition><StudentLife /></PageTransition>} />
+            <Route path="/student-life/work-study" element={<PageTransition><StudentLife /></PageTransition>} />
+            
+            <Route path="/student-life/fees" element={<PageTransition><Tuition /></PageTransition>} /> 
+
+            {/* --- RESEARCH --- */}
+            <Route path="/research/support" element={<PageTransition><GenericContent /></PageTransition>} />
+            <Route path="/research/degrees" element={<PageTransition><GenericContent /></PageTransition>} />
+
+            {/* 404 - Page Not Found */}
+            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+
+          </Routes>
+        </AnimatePresence>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col font-sans text-neutral-900">
-        <Header />
-        
-        <main className="flex-grow">
-          <Routes>
-            {/* --- GLOBAL PAGES --- */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faculty" element={<Faculty />} />
-            <Route path="/accreditations" element={<Accreditations />} />
-            <Route path="/contact" element={<Contact />} />
-
-            {/* --- ACADEMIC PAGES (PHASE 2) --- */}
-            <Route path="/academics" element={<Academics />} />
-            
-            {/* Study with us */}
-            <Route path="/study/courses/undergraduate" element={<Undergraduate />} />
-            <Route path="/study/courses/postgraduate" element={<Postgraduate />} />
-            <Route path="/study/courses/phd" element={<Phd />} />
-
-            {/* International (Tekrarlı içerik) */}
-            <Route path="/international/courses/undergraduate" element={<Undergraduate />} />
-            <Route path="/international/courses/postgraduate" element={<Postgraduate />} />
-            <Route path="/international/courses/phd" element={<Phd />} />
-
-            {/* --- ADMISSIONS & FEES (PHASE 4) --- */}
-            <Route path="/admissions" element={<Admissions />} />
-            <Route path="/tuition" element={<Tuition />} />
-            
-            {/* Apply Alt Rotaları */}
-            <Route path="/apply/undergraduate" element={<PagePlaceholder title="Undergraduate Admissions" />} />
-            <Route path="/apply/postgraduate" element={<PagePlaceholder title="Postgraduate Admissions" />} />
-            <Route path="/apply/transfer-credit" element={<PagePlaceholder title="Transfer Credit" />} />
-
-            {/* --- BUSINESS & VALIDATION (PHASE 5) --- */}
-            <Route path="/validation-services" element={<ValidationServices />} />
-            
-            <Route path="/business/experts" element={<Experts />} />
-            <Route path="/business/employing" element={<Employing />} />
-            <Route path="/business/fundings" element={<Fundings />} />
-            <Route path="/business/degrees-at-work" element={<DegreesAtWork />} />
-            <Route path="/business/professional-courses" element={<ProfessionalCourses />} />
-
-            {/* --- INTERNATIONAL (PHASE 6 - NEW) --- */}
-            <Route path="/international/support" element={<GenericContent />} />
-            <Route path="/international/application" element={<GenericContent />} />
-            <Route path="/international/how-to-apply" element={<GenericContent />} />
-            <Route path="/international/english-requirements" element={<GenericContent />} />
-            <Route path="/international/new-students" element={<GenericContent />} />
-            <Route path="/international/travel" element={<GenericContent />} />
-            <Route path="/international/orientation" element={<GenericContent />} />
-
-            {/* --- STUDENT LIFE (PHASE 6 - NEW) --- */}
-            {/* Timeline İçeren Sayfalar */}
-            <Route path="/student-life/pre-arrival" element={<StudentLife />} />
-            <Route path="/student-life/arrival" element={<StudentLife />} />
-            <Route path="/student-life/first-week" element={<StudentLife />} />
-            
-            {/* Diğer Student Life Sayfaları */}
-            <Route path="/student-life/support" element={<StudentLife />} />
-            <Route path="/student-life/disability" element={<StudentLife />} />
-            <Route path="/student-life/skills" element={<StudentLife />} />
-            <Route path="/student-life/careers" element={<StudentLife />} />
-            <Route path="/student-life/volunteering" element={<StudentLife />} />
-            <Route path="/student-life/work-study" element={<StudentLife />} />
-            
-            {/* Fee Payments -> Tuition sayfasına yönlendirme */}
-            <Route path="/student-life/fees" element={<Tuition />} /> 
-
-            {/* --- RESEARCH (PHASE 6 - NEW) --- */}
-            <Route path="/research/support" element={<GenericContent />} />
-            <Route path="/research/degrees" element={<GenericContent />} />
-
-            {/* 404 */}
-            <Route path="*" element={<PagePlaceholder title="404 - Page Not Found" />} />
-          </Routes>
-        </main>
-
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <AppContent />
+      </BrowserRouter>
+    </HelmetProvider>
   )
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
+// Düzeltme burada: 'type HTMLMotionProps' olarak ayrıldı
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
 }
@@ -29,11 +31,12 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button 
+    <motion.button 
+      whileTap={{ scale: 0.97 }} // Tıklama efekti
       className={twMerge(baseStyles, variants[variant], sizes[size], className)}
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };

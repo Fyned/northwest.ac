@@ -1,85 +1,102 @@
 import { Button } from '../common/Button';
 import { Container } from '../common/Container';
-import { ArrowRight, BookOpen, Users, Globe } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { SmartImage } from '../common/SmartImage';
+import { ArrowRight, BookOpen, Users, Globe, Award } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
+import { AnimatedCounter } from '../common/AnimatedCounter';
+
+import heroBg from '../../assets/images/hero-bg.jpg';
 
 export const Hero = () => {
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: custom * 0.2, duration: 0.8, ease: "easeOut" }
+    })
+  };
+
   return (
-    <div className="relative min-h-[90vh] flex items-center bg-primary-900 overflow-hidden">
+    <div className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden bg-primary-900">
       
-      {/* Arka Plan Görseli */}
+      {/* Arka Plan */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+        <div className="absolute inset-0 bg-primary-950/70 z-10 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-950 via-transparent to-transparent z-10" />
+        <SmartImage 
+          src={heroBg} 
           alt="University Campus" 
-          className="w-full h-full object-cover opacity-20"
+          className="h-full w-full opacity-60"
+          placeholderText="Campus Main Building"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-900 via-primary-900/90 to-transparent" />
       </div>
 
-      {/* İçerik */}
-      <Container className="relative z-10 pt-20">
-        <div className="max-w-3xl space-y-8">
-          
-          {/* Badge */}
+      {/* İçerik Alanı */}
+      <Container className="relative z-20 flex-grow flex items-center pt-32 pb-20">
+        <div className="max-w-4xl">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-secondary-600/10 border border-secondary-600/20 rounded-full px-4 py-2"
+            custom={0}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="inline-flex items-center space-x-3 bg-secondary-500/10 backdrop-blur-sm border border-secondary-500/30 rounded-full px-4 py-1.5 mb-8"
           >
-            <span className="flex h-2 w-2 rounded-full bg-secondary-600 animate-pulse"></span>
-            <span className="text-secondary-500 text-sm font-medium tracking-wide uppercase">
-              Admissions Open for 2026
+            <span className="flex h-2 w-2 rounded-full bg-secondary-500 animate-pulse"></span>
+            <span className="text-secondary-400 text-xs font-bold tracking-[0.2em] uppercase">
+              Admissions Open 2026
             </span>
           </motion.div>
 
-          {/* Başlık */}
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight"
+            custom={1}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.05] mb-8 drop-shadow-lg"
           >
-            Shaping the Future of <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-500 to-white">
-              Global Education
+            Knowledge for a <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 via-secondary-500 to-secondary-300">
+              Borderless World
             </span>
           </motion.h1>
 
-          {/* Açıklama (British English) */}
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl text-neutral-300 font-light leading-relaxed max-w-2xl font-sans"
+            custom={2}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="text-lg md:text-2xl text-primary-100 font-light leading-relaxed max-w-2xl mb-12 border-l-2 border-secondary-500 pl-6"
           >
-            Join a prestigious community of innovators and leaders. With over 478 accredited programmes and a presence in 25 countries, University of NorthWest is dedicated to your academic excellence.
+            Join a global community of innovators. With 478+ accredited programmes across 25 countries, NorthWest is your gateway to excellence.
           </motion.p>
 
-          {/* Butonlar (Virtual Tour kaldırıldı) */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4"
+            custom={3}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="flex flex-wrap gap-4"
           >
-            <Button size="lg" className="group">
-              Explore Programmes
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Button size="lg" className="bg-secondary-500 text-primary-950 hover:bg-secondary-400 border-none font-bold px-8 shadow-lg shadow-secondary-500/20">
+              Find Your Programme
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button size="lg" variant="outline" className="text-white border-white/30 hover:bg-white/10 backdrop-blur-sm px-8">
+              Virtual Campus Tour
             </Button>
           </motion.div>
         </div>
       </Container>
 
-      {/* Alt İstatistik Şeridi */}
-      <div className="absolute bottom-0 w-full border-t border-white/10 bg-primary-900/50 backdrop-blur-md">
+      {/* İstatistik Şeridi - Artık içeriğin altında sabit duracak ve diğer bloklar buna değmeyecek */}
+      <div className="relative z-30 border-t border-white/10 bg-primary-950/80 backdrop-blur-md">
         <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-6 text-white">
-            <StatItem number="478+" label="Accredited Programmes" icon={BookOpen} />
-            <StatItem number="9,458" label="Successful Graduates" icon={Users} />
-            <StatItem number="25" label="Global Campuses" icon={Globe} />
-            <StatItem number="ISO" label="Certified Institution" icon={BookOpen} />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 text-white divide-x divide-white/5">
+            <StatItem number="478+" label="Programmes" icon={BookOpen} />
+            <StatItem number="9,458" label="Graduates" icon={Users} />
+            <StatItem number="25" label="Countries" icon={Globe} />
+            <StatItem number="ISO" label="Certified" icon={Award} />
           </div>
         </Container>
       </div>
@@ -87,16 +104,22 @@ export const Hero = () => {
   );
 };
 
-// Yardımcı Alt Bileşen
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const StatItem = ({ number, label, icon: Icon }: { number: string, label: string, icon: any }) => (
-  <div className="flex items-center space-x-4 group cursor-default">
-    <div className="p-3 rounded-lg bg-white/5 group-hover:bg-secondary-600/20 transition-colors">
-      <Icon className="w-6 h-6 text-secondary-500" />
+const StatItem = ({ number, label, icon: Icon }: { number: string, label: string, icon: any }) => {
+  const numericValue = parseInt(number.replace(/[^0-9]/g, ''));
+  const suffix = number.replace(/[0-9]/g, '');
+
+  return (
+    <div className="flex flex-col items-center md:items-start px-4 group">
+      <div className="flex items-center mb-2 space-x-3">
+        <Icon className="w-6 h-6 text-secondary-500 opacity-80 group-hover:opacity-100 transition-opacity" />
+        <span className="text-3xl font-bold font-serif tracking-tight text-white">
+          {!isNaN(numericValue) ? <AnimatedCounter value={numericValue} suffix={suffix} /> : number}
+        </span>
+      </div>
+      <span className="text-[10px] font-bold uppercase tracking-widest text-primary-300 group-hover:text-secondary-400 transition-colors">
+        {label}
+      </span>
     </div>
-    <div>
-      <div className="text-2xl font-bold font-serif">{number}</div>
-      <div className="text-xs text-neutral-400 uppercase tracking-wider font-sans">{label}</div>
-    </div>
-  </div>
-);
+  );
+};
