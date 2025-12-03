@@ -1,7 +1,7 @@
 [
   {
     "title": "Study with us",
-    "path": "/study",
+    "path": "/academics",
     "children": [
       {
         "title": "Courses",
@@ -15,7 +15,7 @@
   },
   {
     "title": "Apply",
-    "path": "/apply",
+    "path": "/apply/undergraduate",
     "children": [
       { "title": "Undergraduate admissions", "path": "/apply/undergraduate" },
       { "title": "Postgraduate admissions", "path": "/apply/postgraduate" },
@@ -28,7 +28,7 @@
   },
   {
     "title": "Business and employers",
-    "path": "/business",
+    "path": "/business/experts",
     "children": [
       { "title": "Access our experts", "path": "/business/experts" },
       { "title": "Employing students and graduates", "path": "/business/employing" },
@@ -39,16 +39,16 @@
   },
   {
     "title": "International",
-    "path": "/international",
+    "path": "/international/support",
     "children": [
       { "title": "Student support", "path": "/international/support" },
-      { "title": "Making your application", "path": "/international/application" },
+      { "title": "Making your application", "path": "/apply/undergraduate" },
       {
         "title": "Courses",
         "children": [
-          { "title": "Undergraduate", "path": "/international/courses/undergraduate" },
-          { "title": "Postgraduate", "path": "/international/courses/postgraduate" },
-          { "title": "Phd", "path": "/international/courses/phd" }
+          { "title": "Undergraduate", "path": "/study/courses/undergraduate" },
+          { "title": "Postgraduate", "path": "/study/courses/postgraduate" },
+          { "title": "Phd", "path": "/study/courses/phd" }
         ]
       },
       { "title": "How to apply", "path": "/international/how-to-apply" },
@@ -60,7 +60,7 @@
   },
   {
     "title": "Student life",
-    "path": "/student-life",
+    "path": "/student-life/arrival",
     "children": [
       { "title": "When you arrive", "path": "/student-life/arrival" },
       { "title": "Before you get here", "path": "/student-life/pre-arrival" },
@@ -76,7 +76,7 @@
   },
   {
     "title": "Research",
-    "path": "/research",
+    "path": "/research/support",
     "children": [
       { "title": "Research support", "path": "/research/support" },
       { "title": "Research degrees", "path": "/research/degrees" }
