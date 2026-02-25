@@ -81,7 +81,7 @@ export const Employing = () => {
               src={gradImg}
               alt="Graduates"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Graduates at Work"
             />
           </motion.div>

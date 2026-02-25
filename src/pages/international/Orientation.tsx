@@ -67,7 +67,7 @@ export const Orientation = () => {
               src={orientationImg}
               alt="Orientation Day"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Orientation Group"
             />
           </motion.div>

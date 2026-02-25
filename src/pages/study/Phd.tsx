@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../components/common/Container';
 import { PageHeader } from '../../components/common/PageHeader';
 import { SmartImage } from '../../components/common/SmartImage';
-import { Check, BookOpen, ArrowRight, Award, Microscope, Clock } from 'lucide-react';
+import { BookOpen, ArrowRight, Award, Microscope, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { programmes } from '../../data/programmes';
 
@@ -64,7 +64,7 @@ export const Phd = () => {
               src={researchImg}
               alt="Doctoral Research"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Research Lab"
             />
           </motion.div>

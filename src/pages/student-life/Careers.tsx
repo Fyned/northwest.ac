@@ -66,7 +66,7 @@ export const Careers = () => {
               src={careerImg}
               alt="Career Fair"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Career Event"
             />
           </motion.div>

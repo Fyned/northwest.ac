@@ -74,7 +74,7 @@ export const ResearchDegrees = () => {
               src={researchImg}
               alt="Research Degrees"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Academic Research"
             />
           </motion.div>

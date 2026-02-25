@@ -68,7 +68,7 @@ export const WorkStudy = () => {
               src={workImg}
               alt="Students Working"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Part-time Work"
             />
           </motion.div>

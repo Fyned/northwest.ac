@@ -55,7 +55,7 @@ export const StudySupport = () => {
               src={libraryImg}
               alt="Library and Study"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Library & Study Areas"
             />
             <div className="space-y-5">

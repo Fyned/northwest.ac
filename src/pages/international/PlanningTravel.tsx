@@ -86,7 +86,7 @@ export const PlanningTravel = () => {
               src={travelImg}
               alt="Travel Planning"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Travel & Airport"
             />
           </motion.div>

@@ -7,7 +7,7 @@ import { Check, Search, BookOpen, ArrowRight, Award, Clock, Globe } from 'lucide
 import { motion } from 'framer-motion';
 
 import gradImg from '../../assets/images/graduation.jpg';
-import { fadeInUp, stagger } from '../../utils/animations';
+import { fadeInUp } from '../../utils/animations';
 const degrees = [
   "Accounting – MSc",
   "Accounting and Finance – MSc",
@@ -147,7 +147,7 @@ export const Postgraduate = () => {
               src={gradImg}
               alt="Postgraduate Students"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Graduation Ceremony"
             />
             <div className="space-y-6">

@@ -73,7 +73,7 @@ export const FirstWeek = () => {
               src={welcomeImg}
               alt="Welcome Week"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Students Celebrating"
             />
           </motion.div>

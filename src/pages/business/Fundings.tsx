@@ -40,7 +40,7 @@ export const Fundings = () => {
               src={corporateImg}
               alt="Business Meeting"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Corporate Strategy"
             />
             <div className="space-y-5">

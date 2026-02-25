@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../components/common/Container';
 import { PageHeader } from '../../components/common/PageHeader';
 import { SmartImage } from '../../components/common/SmartImage';
-import { CheckCircle, Globe, GraduationCap, FileText, AlertCircle, ArrowRight, DollarSign } from 'lucide-react';
+import { CheckCircle, Globe, GraduationCap, FileText, ArrowRight, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import admissionImg from '../../assets/images/student-life.jpg';
@@ -40,7 +40,7 @@ export const HowToApply = () => {
               src={admissionImg}
               alt="International Students"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Global Community"
             />
           </motion.div>

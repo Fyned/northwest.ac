@@ -86,7 +86,7 @@ export const DegreesAtWork = () => {
               src={corporateImg}
               alt="Corporate Training"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Training Session"
             />
           </motion.div>

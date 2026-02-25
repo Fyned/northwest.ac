@@ -42,7 +42,7 @@ export const EnglishRequirements = () => {
               src={studyImg}
               alt="Language Study"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="International Students"
             />
           </motion.div>

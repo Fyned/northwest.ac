@@ -70,7 +70,7 @@ export const StudySkills = () => {
               src={skillsImg}
               alt="Studying"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Effective Study"
             />
             <div className="space-y-5">

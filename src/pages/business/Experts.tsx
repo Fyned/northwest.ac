@@ -81,7 +81,7 @@ export const Experts = () => {
               src={corporateImg}
               alt="Consultancy Meeting"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Experts Meeting"
             />
           </motion.div>

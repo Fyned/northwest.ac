@@ -7,7 +7,7 @@ import { Microscope, Search, Beaker, BookOpen, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import researchImg from '../../assets/images/research-lab.jpg';
-import { fadeInUp, stagger } from '../../utils/animations';
+import { fadeInUp } from '../../utils/animations';
 const researchAreas = [
   'Analytical Chemistry – MPhil, PhD',
   'Animal and Environmental Sciences – MPhil, PhD',
@@ -109,7 +109,7 @@ export const ResearchSupport = () => {
               src={researchImg}
               alt="Research Laboratory"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Research Facility"
             />
           </motion.div>

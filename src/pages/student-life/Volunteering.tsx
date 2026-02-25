@@ -69,7 +69,7 @@ export const Volunteering = () => {
               src={volunteerImg}
               alt="Volunteering"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Community Service"
             />
           </motion.div>

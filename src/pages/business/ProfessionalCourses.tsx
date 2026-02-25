@@ -72,7 +72,7 @@ export const ProfessionalCourses = () => {
               src={trainingImg}
               alt="Professional Training"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Staff Training"
             />
             <div className="space-y-5">

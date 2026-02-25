@@ -58,7 +58,7 @@ export const DisabilitySupport = () => {
               src={supportImg}
               alt="Student Support"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Inclusive Campus"
             />
           </motion.div>
