@@ -9,6 +9,7 @@ import {
   Calendar, MapPin, Clock, ChevronRight, Quote, Star, Mail
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { fadeInUp, stagger } from '../utils/animations';
 import { programmes } from '../data/programmes';
 
 import campusImg from '../assets/images/campus-building.jpg';
@@ -59,15 +60,7 @@ export const Home = () => {
     'European Association', 'International Council', 'UNESCO Partner', 'Commonwealth Universities'
   ];
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
-
-  const staggerContainer = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.1 } },
-  };
+  const staggerContainer = stagger;
 
   return (
     <div className="bg-white font-sans">

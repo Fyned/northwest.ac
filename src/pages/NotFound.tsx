@@ -2,12 +2,6 @@ import { Link } from 'react-router-dom';
 import { Container } from '../components/common/Container';
 import { Home, Search, BookOpen, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 const quickLinks = [
   { label: 'Home Page', href: '/', icon: Home },
   { label: 'Programmes', href: '/academics', icon: BookOpen },

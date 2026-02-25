@@ -3,12 +3,6 @@ import { Container } from '../components/common/Container';
 import { PageHeader } from '../components/common/PageHeader';
 import { ShieldCheck, CheckCircle, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 const accreditations = [
   'Accreditation Governing Commission (AGC-USA)',
   'Commission for Consistent Learning (CCL-UK)',

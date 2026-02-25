@@ -7,16 +7,6 @@ import { motion } from 'framer-motion';
 
 import gradImg from '../../assets/images/graduation.jpg';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
 export const PostgraduateAdmissions = () => {
   return (
     <div className="bg-white min-h-screen font-sans">

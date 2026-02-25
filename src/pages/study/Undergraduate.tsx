@@ -7,12 +7,6 @@ import { Check, Search, BookOpen, ArrowRight, GraduationCap, Clock, Users } from
 import { motion } from 'framer-motion';
 
 import studentLifeImg from '../../assets/images/student-life.jpg';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 const degrees = [
   "Accounting and Finance – BSc (Hons)",
   "Accounting and Financial Management (Top-Up) – BSc (Hons)",

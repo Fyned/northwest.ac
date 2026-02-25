@@ -7,12 +7,6 @@ import { Microscope, Search, Beaker, BookOpen, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import researchImg from '../../assets/images/research-lab.jpg';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 const researchAreas = [
   'Analytical Chemistry – MPhil, PhD',
   'Animal and Environmental Sciences – MPhil, PhD',

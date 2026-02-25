@@ -7,16 +7,6 @@ import { motion } from 'framer-motion';
 
 import preArrivalImg from '../../assets/images/student-life.jpg';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
 const registrationBenefits = [
   'Attend lectures & seminars',
   'Receive tuition',

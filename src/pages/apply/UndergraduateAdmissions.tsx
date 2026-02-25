@@ -6,12 +6,6 @@ import { CheckCircle, AlertCircle, Globe, HelpCircle, ArrowRight } from 'lucide-
 import { motion } from 'framer-motion';
 
 import admissionImg from '../../assets/images/student-life.jpg';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 export const UndergraduateAdmissions = () => {
   return (
     <div className="bg-white min-h-screen font-sans">

@@ -3,16 +3,6 @@ import { PageHeader } from '../components/common/PageHeader';
 import { CheckSquare, Server, Code, Users, ClipboardCheck, FileText, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
 const services = [
   { title: 'Interface Support', icon: CheckSquare, color: 'secondary', desc: 'Comprehensive testing and validation of user interfaces.' },
   { title: 'Application Support', icon: Server, color: 'primary', desc: 'Ongoing maintenance and validation for enterprise applications.' },

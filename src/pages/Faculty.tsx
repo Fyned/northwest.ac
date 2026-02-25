@@ -4,12 +4,6 @@ import { PageHeader } from '../components/common/PageHeader';
 import { facultyMembers } from '../data/faculty';
 import { Mail, Linkedin, Search, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 const departments = ['All', ...Array.from(new Set(facultyMembers.map(m => m.department)))];
 
 const departmentColors: Record<string, string> = {

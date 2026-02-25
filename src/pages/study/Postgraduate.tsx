@@ -7,12 +7,6 @@ import { Check, Search, BookOpen, ArrowRight, Award, Clock, Globe } from 'lucide
 import { motion } from 'framer-motion';
 
 import gradImg from '../../assets/images/graduation.jpg';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 const degrees = [
   "Accounting – MSc",
   "Accounting and Finance – MSc",
