@@ -1,126 +1,152 @@
 import { Container } from '../components/common/Container';
-import { Section, SectionTitle } from '../components/common/Section';
-import { Button } from '../components/common/Button';
+import { PageHeader } from '../components/common/PageHeader';
 import { CheckSquare, Server, Code, Users, ClipboardCheck, FileText, Send } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const services = [
+  { title: 'Interface Support', icon: CheckSquare, color: 'secondary', desc: 'Comprehensive testing and validation of user interfaces.' },
+  { title: 'Application Support', icon: Server, color: 'primary', desc: 'Ongoing maintenance and validation for enterprise applications.' },
+  { title: 'Project Planning', icon: ClipboardCheck, color: 'amber', desc: 'Strategic validation roadmaps and project milestones.' },
+  { title: 'Software Engineering', icon: Code, color: 'secondary', desc: 'Rigorous code validation and quality assurance processes.' },
+  { title: 'Personnel Support', icon: Users, color: 'primary', desc: 'Training and support for technical staff.' },
+];
 
 export const ValidationServices = () => {
-  const services = [
-    { title: "Interface Support", icon: CheckSquare, desc: "Comprehensive testing and validation of user interfaces." },
-    { title: "Application Support", icon: Server, desc: "Ongoing maintenance and validation for enterprise applications." },
-    { title: "Project Planning", icon: ClipboardCheck, desc: "Strategic validation roadmaps and project milestones." },
-    { title: "Software Engineering", icon: Code, desc: "Rigorous code validation and quality assurance processes." },
-    { title: "Personnel Support", icon: Users, desc: "Training and support for technical staff." }
-  ];
+  const bgMap: Record<string, string> = { secondary: 'bg-secondary-50', primary: 'bg-primary-50', amber: 'bg-amber-50' };
+  const iconMap: Record<string, string> = { secondary: 'text-secondary-600', primary: 'text-primary-900', amber: 'text-amber-600' };
 
   return (
-    <div className="bg-neutral-50 min-h-screen">
-      
-      {/* Header */}
-      <Section bg="navy" className="py-20">
-        <SectionTitle align="center" subtitle="Quality Assurance">Validation Services</SectionTitle>
-        <p className="text-center text-neutral-300 max-w-2xl mx-auto text-lg">
-          Services from configuration to validation. We ensure your systems meet the highest standards of quality and compliance.
-        </p>
-      </Section>
+    <div className="bg-white min-h-screen font-sans">
+      <PageHeader
+        title="Validation Services"
+        subtitle="Quality Assurance"
+        description="Services from configuration to validation. We ensure your systems meet the highest standards of quality and compliance."
+      />
 
-      <Container className="-mt-16 relative z-10 pb-24">
-        
-        {/* 1. HİZMET LİSTESİ (Mevcut İçerik) */}
-        <div className="bg-white p-8 rounded-xl shadow-card border border-neutral-100 mb-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <div key={index} className="flex items-start space-x-4 p-4 rounded-lg hover:bg-neutral-50 transition-colors">
-                <div className="bg-secondary-50 p-3 rounded-lg shrink-0">
-                  <service.icon className="w-6 h-6 text-secondary-600" />
+      {/* Services Grid */}
+      <section className="section-padding bg-white">
+        <Container>
+          <motion.div
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-0"
+          >
+            {services.map((service, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                className="flex items-start gap-4 p-5 rounded-xl bg-white border border-neutral-200 hover:shadow-card transition-all duration-300"
+              >
+                <div className={`w-12 h-12 ${bgMap[service.color]} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                  <service.icon className={`w-6 h-6 ${iconMap[service.color]}`} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-primary-900 mb-1">{service.title}</h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed">{service.desc}</p>
+                  <h3 className="font-bold text-primary-900 mb-1">{service.title}</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed">{service.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </Container>
+      </section>
 
-        {/* 2. SİPARİŞ FORMU (Yeni Eklenen HTML İçeriği) */}
-        <div className="grid md:grid-cols-3 gap-8">
-          
-          {/* Sol Taraf: Bilgi */}
-          <div className="md:col-span-1">
-             <div className="bg-primary-900 text-white p-8 rounded-xl shadow-lg sticky top-24">
-                <FileText className="w-10 h-10 text-secondary-500 mb-4" />
-                <h3 className="text-2xl font-serif font-bold mb-4">Order Form</h3>
-                <p className="text-primary-200 mb-6 leading-relaxed">
+      {/* Order Form */}
+      <section className="section-padding bg-neutral-50">
+        <Container>
+          <motion.div
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid lg:grid-cols-3 gap-8"
+          >
+            {/* Info Sidebar */}
+            <motion.div variants={fadeInUp} className="lg:col-span-1">
+              <div className="bg-primary-900 text-white p-7 rounded-xl sticky top-24">
+                <FileText className="w-8 h-8 text-secondary-500 mb-4" />
+                <h3 className="text-lg font-display font-bold mb-4">Order Form</h3>
+                <p className="text-primary-200 text-sm leading-relaxed mb-6">
                   Fill out this application, and then send it with the required documents to initiate your validation service request.
                 </p>
-                <div className="border-t border-white/10 pt-6">
-                  <p className="text-xs text-primary-300 uppercase tracking-wider font-bold mb-2">Need Help?</p>
-                  <p className="text-lg font-bold">info@northwest.ac</p>
+                <div className="border-t border-white/10 pt-5">
+                  <p className="text-xs text-primary-400 uppercase tracking-wider font-bold mb-2">Need Help?</p>
+                  <p className="font-bold">info@northwest.ac</p>
                 </div>
-             </div>
-          </div>
+              </div>
+            </motion.div>
 
-          {/* Sağ Taraf: Form */}
-          <div className="md:col-span-2">
-            <div className="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-neutral-100">
-              <h2 className="text-2xl font-bold text-primary-900 mb-8">Application Details</h2>
-              
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-neutral-700">Full Name (*)</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all" />
+            {/* Form */}
+            <motion.div variants={fadeInUp} className="lg:col-span-2">
+              <div className="bg-white p-7 md:p-10 rounded-xl border border-neutral-200">
+                <h2 className="text-xl font-bold text-primary-900 mb-6">Application Details</h2>
+                <form className="space-y-5" aria-label="Validation service application">
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="vs-name" className="block text-sm font-bold text-neutral-700 mb-2">Full Name *</label>
+                      <input id="vs-name" type="text" required autoComplete="name" className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm" />
+                    </div>
+                    <div>
+                      <label htmlFor="vs-email" className="block text-sm font-bold text-neutral-700 mb-2">Your Email *</label>
+                      <input id="vs-email" type="email" required autoComplete="email" className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm" />
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-neutral-700">Your Email (*)</label>
-                    <input type="email" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all" />
+
+                  <div>
+                    <label htmlFor="vs-address" className="block text-sm font-bold text-neutral-700 mb-2">Full Shipping Address *</label>
+                    <textarea id="vs-address" rows={3} required className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm resize-none" />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-neutral-700">Full Shipping Address (*)</label>
-                  <textarea rows={3} className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all"></textarea>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-neutral-700">Contact Phone Number (*)</label>
-                    <input type="tel" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all" />
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="vs-phone" className="block text-sm font-bold text-neutral-700 mb-2">Contact Phone Number *</label>
+                      <input id="vs-phone" type="tel" required autoComplete="tel" className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm" />
+                    </div>
+                    <div>
+                      <label htmlFor="vs-degree" className="block text-sm font-bold text-neutral-700 mb-2">Degree & Specialization *</label>
+                      <input id="vs-degree" type="text" required className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm" />
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-neutral-700">Degree & Specialization (*)</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all" />
+
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="vs-date" className="block text-sm font-bold text-neutral-700 mb-2">Date Issued *</label>
+                      <input id="vs-date" type="date" required className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm" />
+                    </div>
+                    <div>
+                      <label htmlFor="vs-credits" className="block text-sm font-bold text-neutral-700 mb-2">Total Credits Earned *</label>
+                      <input id="vs-credits" type="text" required className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm" />
+                    </div>
                   </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-neutral-700">Date Issued (*)</label>
-                    <input type="date" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all" />
+                  <div>
+                    <label htmlFor="vs-institution" className="block text-sm font-bold text-neutral-700 mb-2">Name of the Education Institution *</label>
+                    <input id="vs-institution" type="text" required className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-neutral-50 focus:ring-2 focus:ring-primary-900/20 focus:border-primary-900 outline-none transition-all text-sm" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-neutral-700">Total Credits Earned (*)</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all" />
+
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-900 hover:bg-primary-800 text-white font-bold text-sm rounded-lg transition-colors"
+                    >
+                      <Send className="w-4 h-4" /> Send Application
+                    </button>
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-neutral-700">Name of the Education Institution (*)</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-secondary-500 focus:border-secondary-500 outline-none transition-all" />
-                </div>
-
-                <div className="pt-6">
-                  <Button size="lg" className="w-full md:w-auto shadow-lg">
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Application
-                  </Button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-        </div>
-      </Container>
+                </form>
+              </div>
+            </motion.div>
+          </motion.div>
+        </Container>
+      </section>
     </div>
   );
 };

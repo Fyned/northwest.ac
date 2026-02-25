@@ -1,120 +1,174 @@
+import { Link } from 'react-router-dom';
 import { Container } from '../../components/common/Container';
-import { Section, SectionTitle } from '../../components/common/Section';
+import { PageHeader } from '../../components/common/PageHeader';
 import { SmartImage } from '../../components/common/SmartImage';
 import { Briefcase, DollarSign, Award, Globe, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-// Görsel
-import workImg from '../../assets/images/corporate-meeting.jpg'; // Uygun görsel
+import workImg from '../../assets/images/corporate-meeting.jpg';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const advantages = [
+  {
+    title: 'Extra Income',
+    icon: DollarSign,
+    color: 'secondary',
+    desc: 'Earn money to support your studies and social life while gaining financial independence.',
+  },
+  {
+    title: 'New Skills',
+    icon: Award,
+    color: 'primary',
+    desc: 'Develop employability skills and add valuable work experience to your CV to impress future employers.',
+  },
+  {
+    title: 'Networking',
+    icon: Globe,
+    color: 'amber',
+    desc: 'Meet new people, expand your professional network, and become part of the workplace community.',
+  },
+];
 
 export const WorkStudy = () => {
+  const bgMap: Record<string, string> = { secondary: 'bg-secondary-50', primary: 'bg-primary-50', amber: 'bg-amber-50' };
+  const iconMap: Record<string, string> = { secondary: 'text-secondary-600', primary: 'text-primary-900', amber: 'text-amber-600' };
+  const borderMap: Record<string, string> = { secondary: 'border-t-secondary-500', primary: 'border-t-primary-600', amber: 'border-t-amber-500' };
+
   return (
-    <div className="bg-neutral-50 min-h-screen font-sans">
-      
-      {/* Header */}
-      <Section bg="navy" className="py-20">
-        <SectionTitle align="center" subtitle="Earn & Learn">Work While You Study</SectionTitle>
-        <p className="text-center text-neutral-300 max-w-2xl mx-auto text-lg">
-          Gain valuable experience, earn extra cash, and boost your employability while studying at University of NorthWest.
-        </p>
-      </Section>
+    <div className="bg-white min-h-screen font-sans">
+      <PageHeader
+        title="Work While You Study"
+        subtitle="Earn & Learn"
+        description="Gain valuable experience, earn extra cash, and boost your employability while studying at University of NorthWest."
+      />
 
-      <Container className="-mt-16 relative z-10 pb-24">
-        
-        {/* GİRİŞ & GÖRSEL */}
-        <div className="bg-white p-8 md:p-12 rounded-xl shadow-card border border-neutral-100 mb-12">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-             <div className="order-2 md:order-1">
-               <h2 className="text-2xl font-serif font-bold text-primary-900 mb-6">The Employment Bureau</h2>
-               <p className="text-neutral-600 leading-relaxed mb-6">
-                 We have our own recruitment agency – the Employment Bureau. By registering, you’ll be able to apply for part-time paid work which you can fit around your studies. 
-                 Most of the work is on campus, making it easy to fit into your schedule.
-               </p>
-               <div className="bg-primary-50 p-4 rounded-lg border-l-4 border-primary-500">
-                 <p className="text-sm text-primary-900 font-medium">
-                   You can register online before you arrive, but you’ll need to visit us with your passport to verify your eligibility to work in the UK/USA.
-                 </p>
-               </div>
-             </div>
-             <div className="relative h-64 md:h-auto min-h-[300px] rounded-lg overflow-hidden shadow-md order-1 md:order-2">
-               <SmartImage 
-                 src={workImg} 
-                 alt="Students Working" 
-                 className="h-full w-full"
-                 placeholderText="Part-time Work"
-                 aspectRatio="video"
-               />
-             </div>
-          </div>
-        </div>
-
-        {/* AVANTAJLAR (GRID) */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          
-          <div className="bg-white p-8 rounded-xl shadow-sm border-t-4 border-secondary-500 text-center hover:-translate-y-1 transition-transform">
-            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
-              <DollarSign className="w-6 h-6 text-primary-900" />
+      {/* Intro */}
+      <section className="section-padding bg-white">
+        <Container>
+          <motion.div
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={fadeInUp}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div className="space-y-5">
+              <h2 className="text-3xl font-display font-bold text-primary-900">The Employment Bureau</h2>
+              <div className="h-1 w-16 bg-secondary-500 rounded-full" />
+              <p className="text-neutral-600 leading-relaxed">
+                We have our own recruitment agency &ndash; the Employment Bureau. By registering, you&apos;ll be able to apply for part-time paid work which you can fit around your studies.
+                Most of the work is on campus, making it easy to fit into your schedule.
+              </p>
+              <div className="p-4 bg-primary-50 rounded-lg border-l-4 border-primary-500">
+                <p className="text-sm text-primary-900 font-medium">
+                  You can register online before you arrive, but you&apos;ll need to visit us with your passport to verify your eligibility to work in the USA.
+                </p>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-primary-900 mb-2">Extra Income</h3>
-            <p className="text-sm text-neutral-600">
-              Earn money to support your studies and social life while gaining financial independence.
-            </p>
-          </div>
+            <SmartImage
+              src={workImg}
+              alt="Students Working"
+              className="rounded-2xl shadow-elevated w-full"
+              aspectRatio="landscape"
+              placeholderText="Part-time Work"
+            />
+          </motion.div>
+        </Container>
+      </section>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border-t-4 border-primary-600 text-center hover:-translate-y-1 transition-transform">
-             <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
-               <Award className="w-6 h-6 text-primary-900" />
-             </div>
-             <h3 className="text-lg font-bold text-primary-900 mb-2">New Skills</h3>
-             <p className="text-sm text-neutral-600">
-               Develop employability skills and add valuable work experience to your CV to impress future employers.
-             </p>
-          </div>
+      {/* Advantages Grid */}
+      <section className="section-padding bg-neutral-50">
+        <Container>
+          <motion.div
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid md:grid-cols-3 gap-6"
+          >
+            {advantages.map((adv, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                className={`bg-white p-7 rounded-xl border border-neutral-200 border-t-4 ${borderMap[adv.color]} hover:shadow-card transition-all duration-300 text-center`}
+              >
+                <div className={`w-12 h-12 ${bgMap[adv.color]} rounded-xl flex items-center justify-center mx-auto mb-5`}>
+                  <adv.icon className={`w-6 h-6 ${iconMap[adv.color]}`} />
+                </div>
+                <h3 className="text-lg font-bold text-primary-900 mb-3">{adv.title}</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">{adv.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </section>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border-t-4 border-secondary-500 text-center hover:-translate-y-1 transition-transform">
-             <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
-               <Globe className="w-6 h-6 text-primary-900" />
-             </div>
-             <h3 className="text-lg font-bold text-primary-900 mb-2">Networking</h3>
-             <p className="text-sm text-neutral-600">
-               Meet new people, expand your professional network, and become part of the workplace community.
-             </p>
-          </div>
-
-        </div>
-
-        {/* ÖNEMLİ BİLGİLER & CTA */}
-        <div className="grid md:grid-cols-2 gap-8">
-           
-           <div className="bg-white p-8 rounded-xl shadow-sm border border-neutral-100">
-              <div className="flex items-center mb-4">
-                <Globe className="w-6 h-6 text-primary-900 mr-3" />
-                <h3 className="text-xl font-bold text-primary-900">International Students</h3>
+      {/* Info Cards */}
+      <section className="section-padding bg-white">
+        <Container>
+          <motion.div
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid lg:grid-cols-2 gap-6"
+          >
+            <motion.div variants={fadeInUp} className="bg-white p-7 rounded-xl border border-neutral-200">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-secondary-50 rounded-xl flex items-center justify-center">
+                  <Globe className="w-5 h-5 text-secondary-600" />
+                </div>
+                <h3 className="text-lg font-bold text-primary-900">International Students</h3>
               </div>
-              <p className="text-sm text-neutral-600 leading-relaxed mb-4">
-                If you’re an international student, there may be restrictions on your working hours as stated on your visa (typically 20 hours per week during term time).
+              <p className="text-sm text-neutral-600 leading-relaxed mb-3">
+                If you&apos;re an international student, there may be restrictions on your working hours as stated on your visa (typically 20 hours per week during term time).
               </p>
-              <Link to="/international/support" className="text-secondary-600 font-bold text-xs flex items-center hover:underline">
-                 Check Visa Regulations <ArrowRight className="ml-1 w-3 h-3" />
+              <Link to="/international/how-to-apply" className="text-secondary-600 font-bold text-sm flex items-center gap-1 hover:underline">
+                Check Visa Regulations <ArrowRight className="w-3 h-3" />
               </Link>
-           </div>
+            </motion.div>
 
-           <div className="bg-white p-8 rounded-xl shadow-sm border border-neutral-100">
-              <div className="flex items-center mb-4">
-                <Briefcase className="w-6 h-6 text-primary-900 mr-3" />
-                <h3 className="text-xl font-bold text-primary-900">Graduate Recruitment</h3>
+            <motion.div variants={fadeInUp} className="bg-white p-7 rounded-xl border border-neutral-200">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-primary-50 rounded-xl flex items-center justify-center">
+                  <Briefcase className="w-5 h-5 text-primary-900" />
+                </div>
+                <h3 className="text-lg font-bold text-primary-900">Graduate Recruitment</h3>
               </div>
-              <p className="text-sm text-neutral-600 leading-relaxed mb-4">
-                We’ll be here for you after you graduate too. The team recruits for a variety of permanent graduate positions in the local area.
+              <p className="text-sm text-neutral-600 leading-relaxed mb-3">
+                We&apos;ll be here for you after you graduate too. The team recruits for a variety of permanent graduate positions in the local area.
               </p>
-              <Link to="/student-life/careers" className="text-secondary-600 font-bold text-xs flex items-center hover:underline">
-                 Visit Employability Service <ArrowRight className="ml-1 w-3 h-3" />
+              <Link to="/student-life/careers" className="text-secondary-600 font-bold text-sm flex items-center gap-1 hover:underline">
+                Visit Employability Service <ArrowRight className="w-3 h-3" />
               </Link>
-           </div>
+            </motion.div>
+          </motion.div>
+        </Container>
+      </section>
 
-        </div>
-
-      </Container>
+      {/* CTA */}
+      <section className="py-16 bg-primary-900">
+        <Container>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">Questions About Working?</h2>
+              <p className="text-neutral-300">Get in touch with our Employment Bureau for more information.</p>
+            </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary-500 hover:bg-secondary-400 text-primary-950 font-bold text-sm rounded-lg transition-all duration-200 shadow-lg shadow-secondary-500/20 flex-shrink-0"
+            >
+              Contact Us <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 };

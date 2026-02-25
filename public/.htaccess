@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Eğer projeniz bir alt klasörde değilse (örn: site.com/), burası / kalmalı.
+  # Alt klasörde ise (örn: site.com/app/), burayı /app/ yapmalısınız.
+  RewriteBase /
+
+  # index.html dosyasına gelen istekleri olduğu gibi bırak
+  RewriteRule ^index\.html$ - [L]
+
+  # İstek bir dosya, klasör veya sembolik link değilse...
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+
+  # ...isteği index.html'e yönlendir (React Router devreye girsin)
+  RewriteRule . /index.html [L]
+</IfModule>

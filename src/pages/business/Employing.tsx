@@ -1,149 +1,148 @@
-import { Container } from '../../components/common/Container';
-import { Section, SectionTitle } from '../../components/common/Section';
-import { Card } from '../../components/common/Card';
-import { SmartImage } from '../../components/common/SmartImage';
-import { Button } from '../../components/common/Button';
-import { CheckCircle, Users, Briefcase, Award, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Container } from '../../components/common/Container';
+import { PageHeader } from '../../components/common/PageHeader';
+import { SmartImage } from '../../components/common/SmartImage';
+import { CheckCircle, Users, Briefcase, Award, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// Görsel
-import gradImg from '../../assets/images/graduation.jpg'; // Uygun görsel
+import gradImg from '../../assets/images/graduation.jpg';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const benefits = [
+  'Introducing innovative new ideas into your business',
+  'Expanding your workforce for a short-term project without long-term commitment',
+  'Delivering highly motivated graduates eager to gain valuable experience',
+  'Identifying potential new employees you can test drive with minimum risk',
+];
+
+const programmes = [
+  {
+    title: 'Internship Programme',
+    icon: Users,
+    color: 'secondary',
+    desc: 'Offers companies the opportunity to work with a high calibre graduate or student for up to 12 weeks. The graduate is employed by the University but works full-time within your company.',
+    cta: { label: 'Contact Internship Office', href: '/contact' },
+  },
+  {
+    title: 'Knowledge Transfer (KTP)',
+    icon: Award,
+    color: 'primary',
+    desc: 'A three-way partnership between your business, the University, and an excellent graduate. KTPs are supported by government grants of up to 67%.',
+    cta: { label: 'Talk to a KTP Manager', href: '/contact' },
+  },
+  {
+    title: 'Employment Bureau',
+    icon: Briefcase,
+    color: 'amber',
+    desc: 'The Employment Bureau can help with all your recruitment needs whether you are looking to fill a permanent role or need temporary cover for a short-term need.',
+    cta: { label: 'Recruitment Services', href: '/contact' },
+  },
+];
 
 export const Employing = () => {
-  const benefits = [
-    "Introducing innovative new ideas into your business",
-    "Expanding your workforce for a short-term project without long-term commitment",
-    "Delivering highly motivated graduates eager to gain valuable experience",
-    "Identifying potential new employees you can ‘test drive’ with minimum risk"
-  ];
+  const bgMap: Record<string, string> = { secondary: 'bg-secondary-50', primary: 'bg-primary-50', amber: 'bg-amber-50' };
+  const iconMap: Record<string, string> = { secondary: 'text-secondary-600', primary: 'text-primary-900', amber: 'text-amber-600' };
+  const borderMap: Record<string, string> = { secondary: 'border-t-secondary-500', primary: 'border-t-primary-600', amber: 'border-t-amber-500' };
 
   return (
-    <div className="bg-neutral-50 min-h-screen font-sans">
-      
-      {/* Header */}
-      <Section bg="navy" className="py-20">
-        <SectionTitle align="center" subtitle="Talent Acquisition">Employing Students & Graduates</SectionTitle>
-        <p className="text-center text-neutral-300 max-w-3xl mx-auto text-lg">
-          Internships and placements offer a cost-effective and low-risk way of boosting your efficiency, productivity, and profit.
-        </p>
-      </Section>
+    <div className="bg-white min-h-screen font-sans">
+      <PageHeader
+        title="Employing Students & Graduates"
+        subtitle="Talent Acquisition"
+        description="Internships and placements offer a cost-effective and low-risk way of boosting your efficiency, productivity, and profit."
+      />
 
-      <Container className="-mt-16 relative z-10 pb-24">
-        
-        {/* GİRİŞ & AVANTAJLAR */}
-        <div className="bg-white p-8 md:p-12 rounded-xl shadow-card border border-neutral-100 mb-12">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-2xl font-serif font-bold text-primary-900 mb-6">Internships, Placements & Recruitment</h2>
-              <p className="text-neutral-600 leading-relaxed mb-6">
-                University of Northwest offers employers a range of services to get the most from student and graduate resources. 
+      {/* Intro */}
+      <section className="section-padding bg-white">
+        <Container>
+          <motion.div
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={fadeInUp}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div className="space-y-5">
+              <h2 className="text-3xl font-display font-bold text-primary-900">Internships, Placements & Recruitment</h2>
+              <div className="h-1 w-16 bg-secondary-500 rounded-full" />
+              <p className="text-neutral-600 leading-relaxed">
+                University of Northwest offers employers a range of services to get the most from student and graduate resources.
                 Our aim is to help you grow by connecting you with the next generation of talent.
               </p>
               <ul className="space-y-3">
-                {benefits.map((benefit, idx) => (
-                  <li key={idx} className="flex items-start text-neutral-700">
-                    <CheckCircle className="w-5 h-5 text-secondary-500 mr-3 shrink-0 mt-0.5" />
-                    {benefit}
+                {benefits.map((b, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-neutral-700">
+                    <CheckCircle className="w-4 h-4 text-secondary-500 mt-0.5 flex-shrink-0" />
+                    {b}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="relative h-64 md:h-auto min-h-[300px] rounded-lg overflow-hidden shadow-md">
-              <SmartImage 
-                src={gradImg} 
-                alt="Graduates" 
-                className="h-full w-full"
-                placeholderText="Graduates at Work"
-                aspectRatio="portrait"
-              />
+            <SmartImage
+              src={gradImg}
+              alt="Graduates"
+              className="rounded-2xl shadow-elevated w-full"
+              aspectRatio="landscape"
+              placeholderText="Graduates at Work"
+            />
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* Programmes Grid */}
+      <section className="section-padding bg-neutral-50">
+        <Container>
+          <motion.div
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid md:grid-cols-3 gap-6"
+          >
+            {programmes.map((prog, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                className={`bg-white p-7 rounded-xl border border-neutral-200 border-t-4 ${borderMap[prog.color]} hover:shadow-card transition-all duration-300`}
+              >
+                <div className={`w-12 h-12 ${bgMap[prog.color]} rounded-xl flex items-center justify-center mb-5`}>
+                  <prog.icon className={`w-6 h-6 ${iconMap[prog.color]}`} />
+                </div>
+                <h3 className="text-lg font-bold text-primary-900 mb-3">{prog.title}</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed mb-4">{prog.desc}</p>
+                <Link to={prog.cta.href} className="text-secondary-600 font-bold text-sm flex items-center gap-1 hover:underline">
+                  {prog.cta.label} <ArrowRight className="w-3 h-3" />
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-primary-900">
+        <Container>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">Expert Help</h2>
+              <p className="text-neutral-300">Get in touch and talk to us about how student and graduate placements can benefit your business.</p>
             </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary-500 hover:bg-secondary-400 text-primary-950 font-bold text-sm rounded-lg transition-all duration-200 shadow-lg shadow-secondary-500/20 flex-shrink-0"
+            >
+              Get in Touch <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-        </div>
-
-        {/* PROGRAMLAR (KARTLAR) */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          
-          {/* Internship Programme */}
-          <Card 
-            title="Internship Programme" 
-            className="border-t-4 border-t-secondary-500"
-            footer={
-              <Link to="/contact" className="text-secondary-600 font-bold text-sm hover:text-secondary-700 flex items-center">
-                Contact Internship Office <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            }
-          >
-            <div className="mb-4">
-               <Users className="w-10 h-10 text-primary-900 bg-primary-50 p-2 rounded-lg" />
-            </div>
-            <p className="mb-4">
-              Offers companies based in the East of England* the opportunity to work with a high calibre graduate or student for up to 12 weeks.
-            </p>
-            <p>
-              The graduate is employed by University of Northwest but works full-time as an intern within your company. We handle all administration (contracts, remuneration).
-            </p>
-          </Card>
-
-          {/* Knowledge Transfer Partnerships */}
-          <Card 
-            title="Knowledge Transfer (KTP)" 
-            className="border-t-4 border-t-primary-600"
-            footer={
-              <Link to="/contact" className="text-primary-600 font-bold text-sm hover:text-primary-800 flex items-center">
-                Talk to a KTP Manager <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            }
-          >
-            <div className="mb-4">
-               <Award className="w-10 h-10 text-primary-900 bg-primary-50 p-2 rounded-lg" />
-            </div>
-            <p className="mb-4">
-              A three-way partnership between your business, the University, and an excellent graduate. KTPs are supported by government grants of up to 67%.
-            </p>
-            <p>
-              Companies participating report an average increase in annual profit of over £227k. We help you become more profitable and efficient.
-            </p>
-          </Card>
-
-          {/* Employment Bureau */}
-          <Card 
-            title="Employment Bureau" 
-            className="border-t-4 border-t-secondary-500"
-            footer={
-              <Link to="/contact" className="text-secondary-600 font-bold text-sm hover:text-secondary-700 flex items-center">
-                Recruitment Services <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            }
-          >
-            <div className="mb-4">
-               <Briefcase className="w-10 h-10 text-primary-900 bg-primary-50 p-2 rounded-lg" />
-            </div>
-            <p>
-              The Employment Bureau can help with all your recruitment needs whether you are looking to fill a permanent role or need temporary cover to fill a short-term need.
-            </p>
-          </Card>
-
-        </div>
-
-        {/* EXPERT HELP & FOOTNOTE */}
-        <div className="bg-primary-900 text-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between">
-          <div className="mb-6 md:mb-0 md:mr-8">
-            <h3 className="text-xl font-bold mb-2">Expert Help</h3>
-            <p className="text-primary-200 mb-4">
-              Get in touch and talk to us about how student and graduate placements can benefit your business.
-            </p>
-            <p className="text-xs text-primary-400 italic">
-              * The East of England includes Bedfordshire, Cambridgeshire, Essex, Hertfordshire, Norfolk and Suffolk.
-            </p>
-          </div>
-          <Link to="/contact">
-            <Button variant="secondary" className="whitespace-nowrap">
-              Get in Touch
-            </Button>
-          </Link>
-        </div>
-
-      </Container>
+        </Container>
+      </section>
     </div>
   );
 };

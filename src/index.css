@@ -1,37 +1,341 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ========================================
+   BASE STYLES - University of Northwest
+   ======================================== */
 
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  body {
-    @apply text-neutral-800 bg-neutral-50 font-sans;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
   }
 
+  body {
+    @apply text-neutral-700 bg-white font-sans text-base leading-relaxed;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+    overflow-x: hidden;
+  }
+
+  /* Typography Hierarchy */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-primary-900;
+    @apply font-display text-primary-900 font-semibold tracking-tight;
+    text-wrap: balance;
+  }
+
+  h1 { @apply text-hero; }
+  h2 { @apply text-section; }
+  h3 { @apply text-2xl md:text-3xl; }
+  h4 { @apply text-xl md:text-2xl; }
+  h5 { @apply text-lg md:text-xl; }
+  h6 { @apply text-base md:text-lg; }
+
+  p {
+    @apply leading-relaxed;
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-secondary-400/30 text-primary-900;
+  }
+
+  /* Focus Styles - Accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-secondary-500 rounded-sm;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 rounded-full;
+    transition: background-color 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400;
   }
 }
 
+/* ========================================
+   COMPONENT STYLES
+   ======================================== */
+
 @layer components {
-  /* Modern Kart Yapısı */
+  /* Card System */
   .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-card;
+    @apply transition-all duration-300 ease-smooth;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1.5 shadow-card-hover;
   }
 
-  /* Metin Vurguları */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-900 to-primary-600;
+  .card-base {
+    @apply bg-white rounded-2xl border border-neutral-200/60 overflow-hidden shadow-soft transition-all duration-300;
   }
-  
+
+  .card-base:hover {
+    @apply shadow-card-hover border-neutral-200 -translate-y-1;
+  }
+
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-900 via-primary-700 to-primary-800;
+  }
+
   .text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary-400 to-secondary-600;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary-400 via-secondary-500 to-secondary-600;
+  }
+
+  .text-gradient-light {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-200;
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-primary-900/80 backdrop-blur-xl border border-white/10;
+  }
+
+  /* Section Styles */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .section-padding-sm {
+    @apply py-10 md:py-14 lg:py-16;
+  }
+
+  .section-padding-lg {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  /* Decorative Elements */
+  .section-divider {
+    @apply w-16 h-1 bg-gradient-to-r from-secondary-400 to-secondary-600 rounded-full;
+  }
+
+  .section-divider-center {
+    @apply w-16 h-1 bg-gradient-to-r from-secondary-400 to-secondary-600 rounded-full mx-auto;
+  }
+
+  .section-divider-white {
+    @apply w-16 h-1 bg-gradient-to-r from-white/60 to-white/30 rounded-full;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-full;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-900/10 text-primary-900;
+  }
+
+  .badge-secondary {
+    @apply badge bg-secondary-400/15 text-secondary-700;
+  }
+
+  .badge-light {
+    @apply badge bg-white/15 text-white border border-white/20;
+  }
+
+  /* Button Enhancements */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      transparent
+    );
+    transform: rotate(25deg);
+    transition: left 0.5s ease;
+  }
+
+  .btn-shine:hover::after {
+    left: 125%;
+  }
+
+  /* Link Styles */
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Image Overlay */
+  .img-overlay {
+    @apply relative overflow-hidden;
+  }
+
+  .img-overlay::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-primary-900/60 via-primary-900/20 to-transparent transition-opacity duration-300;
+  }
+
+  .img-overlay:hover::after {
+    @apply opacity-80;
+  }
+
+  /* Aspect Ratios */
+  .aspect-hero {
+    aspect-ratio: 16 / 7;
+  }
+
+  .aspect-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Grid Patterns */
+  .grid-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Page Header (Subpage Banner) */
+  .page-header {
+    @apply relative bg-primary-900 text-white overflow-hidden;
+    background-image: linear-gradient(135deg, #0d2137 0%, #1e3a56 40%, #0d2137 100%);
+  }
+
+  .page-header::before {
+    content: '';
+    @apply absolute inset-0 opacity-30;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Stat Counter */
+  .stat-card {
+    @apply text-center p-6;
+  }
+
+  .stat-number {
+    @apply text-4xl md:text-5xl font-bold font-display;
+  }
+
+  .stat-label {
+    @apply text-sm font-medium uppercase tracking-wider mt-2;
+  }
+
+  /* Animated Underline for Nav */
+  .nav-link-animated {
+    @apply relative;
+  }
+
+  .nav-link-animated::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-secondary-500 transition-all duration-300 ease-smooth;
+  }
+
+  .nav-link-animated:hover::after,
+  .nav-link-animated.active::after {
+    @apply w-full;
+  }
+
+  /* Form Inputs */
+  .form-input {
+    @apply w-full px-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-800
+           placeholder:text-neutral-400
+           focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none
+           transition-all duration-200;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-neutral-700 mb-1.5;
+  }
+
+  /* Skeleton Loading */
+  .skeleton {
+    @apply relative overflow-hidden bg-neutral-200 rounded-lg;
+  }
+
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s linear infinite;
+    background-size: 200% 100%;
+  }
+}
+
+/* ========================================
+   UTILITY STYLES
+   ======================================== */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Touch Target - Mobile */
+  @media (pointer: coarse) {
+    button, a, [role="button"], input, select, textarea {
+      min-height: 44px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
