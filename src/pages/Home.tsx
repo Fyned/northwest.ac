@@ -13,9 +13,7 @@ import { fadeInUp, stagger } from '../utils/animations';
 import { programmes } from '../data/programmes';
 
 import campusImg from '../assets/images/campus-building.jpg';
-import studentImg from '../assets/images/student-life.jpg';
-import corporateImg from '../assets/images/corporate-meeting.jpg';
-import researchImg from '../assets/images/research-lab.jpg';
+
 
 export const Home = () => {
   const featuredProgrammes = [

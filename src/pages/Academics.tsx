@@ -6,7 +6,7 @@ import { programmes } from '../data/programmes';
 import type { DegreeLevel } from '../types';
 import { Search, BookOpen, Clock, ArrowRight, GraduationCap, Award, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { fadeInUp, stagger } from '../utils/animations';
+import { fadeInUp } from '../utils/animations';
 const levelColors: Record<string, { bg: string; text: string; border: string; dot: string }> = {
   Bachelor: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', dot: 'bg-blue-500' },
   Master: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', dot: 'bg-purple-500' },

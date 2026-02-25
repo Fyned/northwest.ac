@@ -124,7 +124,7 @@ export const TransferCredit = () => {
               src={campusImg}
               alt="University Campus"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Campus Life"
             />
             <div className="space-y-6">

@@ -3,7 +3,7 @@ import { Container } from '../components/common/Container';
 import { PageHeader } from '../components/common/PageHeader';
 import { ShieldCheck, CheckCircle, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { fadeInUp, stagger } from '../utils/animations';
+import { fadeInUp } from '../utils/animations';
 const accreditations = [
   'Accreditation Governing Commission (AGC-USA)',
   'Commission for Consistent Learning (CCL-UK)',

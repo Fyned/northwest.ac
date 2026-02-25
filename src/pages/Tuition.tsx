@@ -68,7 +68,7 @@ export const Tuition = () => {
               src={financeImg}
               alt="Financial Planning"
               className="rounded-2xl shadow-elevated w-full"
-              aspectRatio="landscape"
+              aspectRatio="wide"
               placeholderText="Finance & Payments"
             />
           </motion.div>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../components/common/Container';
 import { Home, Search, BookOpen, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { fadeInUp, stagger } from '../utils/animations';
+import { fadeInUp } from '../utils/animations';
 const quickLinks = [
   { label: 'Home Page', href: '/', icon: Home },
   { label: 'Programmes', href: '/academics', icon: BookOpen },

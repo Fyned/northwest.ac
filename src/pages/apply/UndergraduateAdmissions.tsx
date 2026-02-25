@@ -6,7 +6,7 @@ import { CheckCircle, AlertCircle, Globe, HelpCircle, ArrowRight } from 'lucide-
 import { motion } from 'framer-motion';
 
 import admissionImg from '../../assets/images/student-life.jpg';
-import { fadeInUp, stagger } from '../../utils/animations';
+import { fadeInUp } from '../../utils/animations';
 export const UndergraduateAdmissions = () => {
   return (
     <div className="bg-white min-h-screen font-sans">
